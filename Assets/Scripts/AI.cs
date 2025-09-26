@@ -4,13 +4,13 @@ using UnityEngine;
 public class AI : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    float speed = 50;
+    float speed = 30;
     Animator animator;
     public Transform ball; 
-    public Transform hitTarget;
+    //public Transform hitTarget;
 
     Vector3 targetPosition;
-    float force = 15f;
+    [SerializeField] float force = 20f;
     public Transform[] targets; 
 
     ShotManagement shotManagement;
@@ -46,6 +46,7 @@ public class AI : MonoBehaviour
         {
             Vector3 dir = PickTarget() - transform.position;
             other.GetComponent<Rigidbody>().linearVelocity = dir.normalized * force + new Vector3(0, 5, 0);
+            ball.GetComponent<Ball>().hitter = "AI";
 
             //Vector3 ballDir = ball.position - transform.position;
             //if (ballDir.x >= 0)

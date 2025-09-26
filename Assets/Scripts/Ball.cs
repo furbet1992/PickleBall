@@ -19,20 +19,22 @@ public class Ball : MonoBehaviour
            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
-           GameObject.Find("player").GetComponent<Player>().Reset(); 
+           GameObject.Find("Player").GetComponent<Player>().Reset(); 
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Out"))
+        if (other.CompareTag("Out") || other.CompareTag("Net"))
         {
             if(hitter == "Player")
             {
-                board.AIScore++; 
+              Debug.Log("player hit it");
+                board.PlayerWinScoring(); 
             } else if(hitter == "AI")
             {
-                board.playerScore++;
+                board.AIWinScoring();
+                Debug.Log("AI hit it");
             }
         }
     }

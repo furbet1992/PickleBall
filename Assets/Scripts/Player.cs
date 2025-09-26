@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed;
     public Transform aimTarget;
     float force = 15f;
     bool hitting;
+
+    PlayerControls controls; 
+    //public InputActionReference move;
 
     Animator animator;
     public Transform ball;
@@ -18,7 +22,16 @@ public class Player : MonoBehaviour
     [SerializeField] Transform serveRight;
     [SerializeField] Transform serveLeft;
 
-    bool servedRight = true; 
+    bool servedRight = true;
+
+    Vector2 moveDirection;
+
+
+    //private CharacterController characterController;
+    //private Vector2 moveInput;
+    //private Vector2 velocity;
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,13 +41,14 @@ public class Player : MonoBehaviour
         sM = GetComponent<ShotManagement>();
         currentShot = sM.topspin;
         aimTargetInitialPosition = aimTarget.position;
+        //characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        //Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
+        //characterController.Move(m * speed * Time.deltaTime);
 
         //Topspin
         if (Input.GetKeyDown(KeyCode.F))
@@ -91,16 +105,28 @@ public class Player : MonoBehaviour
             ball.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
         }
 
-        if (hitting)
-        {
-            aimTarget.Translate(new Vector3(h, 0, v) * speed * Time.deltaTime);
-        }
+        //if (hitting)
+        //{
+        //    aimTarget.Translate(new Vector3(m.x, 0, m.y) * speed * Time.deltaTime);
+        //}
 
-        if ((h != 0 || v != 0) && !hitting)
-        {
-            transform.Translate(new Vector3(h, 0, v) * speed * Time.deltaTime);
-        }
+        //if ((m.x != 0 || m.y != 0) && !hitting)
+        //{
+        //    transform.Translate(new Vector3(m.x, 0, m.y) * speed * Time.deltaTime);
+        //}
     }
+
+
+    //public void OnMove(InputAction.CallbackContext context)
+    //{
+    //    moveInput = context.ReadValue<Vector2>();
+    //    Debug.Log($"Move Input: {moveInput}");
+    //}
+
+    //public void Shoot(InputAction.CallbackContext context)
+    //{
+    //    Debug.Log($"Stroke");
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -110,16 +136,17 @@ public class Player : MonoBehaviour
             other.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
 
 
-            Vector3 ballDir = ball.position - transform.position;
-            if (ballDir.x <= 0)
-            {
-                animator.Play("Hitting");
-                Debug.Log("hit");
-            }
-            else
-            {
-                animator.Play("Backhand");
-            }
+            //Vector3 ballDir = ball.position - transform.position;
+            //if (ballDir.x <= 0)
+            //{
+            //    animator.Play("Hitting");
+            //    Debug.Log("hit");
+            //}
+            //else
+            //{
+            //    animator.Play("Backhand");
+            //}
+            ball.GetComponent<Ball>().hitter = "player"; 
             aimTarget.transform.position = aimTargetInitialPosition;
         }
     }
