@@ -93,6 +93,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""aa62d8db-3a5f-4823-81ed-2203ad7ad8a7"",
             ""actions"": [
                 {
+                    ""name"": ""FlatShot"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a8ff82e-95c4-4bd0-9d20-fc0341003b51"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""TopSpin"",
                     ""type"": ""Button"",
                     ""id"": ""097f73ec-91bd-47d1-a558-47468b29ee39"",
@@ -133,6 +142,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""799503b6-be54-4949-9142-ed8e5ccb1bbe"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlatShot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
+        m_GamePlay_FlatShot = m_GamePlay.FindAction("FlatShot", throwIfNotFound: true);
         m_GamePlay_TopSpin = m_GamePlay.FindAction("TopSpin", throwIfNotFound: true);
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
     }
@@ -223,6 +244,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // GamePlay
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
+    private readonly InputAction m_GamePlay_FlatShot;
     private readonly InputAction m_GamePlay_TopSpin;
     private readonly InputAction m_GamePlay_Move;
     /// <summary>
@@ -236,6 +258,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public GamePlayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/FlatShot".
+        /// </summary>
+        public InputAction @FlatShot => m_Wrapper.m_GamePlay_FlatShot;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/TopSpin".
         /// </summary>
@@ -270,6 +296,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GamePlayActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GamePlayActionsCallbackInterfaces.Add(instance);
+            @FlatShot.started += instance.OnFlatShot;
+            @FlatShot.performed += instance.OnFlatShot;
+            @FlatShot.canceled += instance.OnFlatShot;
             @TopSpin.started += instance.OnTopSpin;
             @TopSpin.performed += instance.OnTopSpin;
             @TopSpin.canceled += instance.OnTopSpin;
@@ -287,6 +316,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="GamePlayActions" />
         private void UnregisterCallbacks(IGamePlayActions instance)
         {
+            @FlatShot.started -= instance.OnFlatShot;
+            @FlatShot.performed -= instance.OnFlatShot;
+            @FlatShot.canceled -= instance.OnFlatShot;
             @TopSpin.started -= instance.OnTopSpin;
             @TopSpin.performed -= instance.OnTopSpin;
             @TopSpin.canceled -= instance.OnTopSpin;
@@ -333,6 +365,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// <seealso cref="GamePlayActions.RemoveCallbacks(IGamePlayActions)" />
     public interface IGamePlayActions
     {
+        /// <summary>
+        /// Method invoked when associated input action "FlatShot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlatShot(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "TopSpin" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -7,6 +7,15 @@
             "id": "aa62d8db-3a5f-4823-81ed-2203ad7ad8a7",
             "actions": [
                 {
+                    "name": "FlatShot",
+                    "type": "Button",
+                    "id": "1a8ff82e-95c4-4bd0-9d20-fc0341003b51",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "TopSpin",
                     "type": "Button",
                     "id": "097f73ec-91bd-47d1-a558-47468b29ee39",
@@ -45,6 +54,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "799503b6-be54-4949-9142-ed8e5ccb1bbe",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlatShot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
