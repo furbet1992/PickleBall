@@ -34,9 +34,12 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        Debug.Log($"Stroke");
-        player.TopspinStroke(); 
-        //BallController.Instance?.AddForceToBall(); 
+        if (context.performed)
+        {
+            Debug.Log($"Stroke");
+            player.TopspinStroke(); 
+            //BallController.Instance?.AddForceToBall(); 
+        }
     }
 
     //public void Flat(InputAction.CallbackContext context)

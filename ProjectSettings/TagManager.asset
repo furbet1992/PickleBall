@@ -10,6 +10,7 @@ TagManager:
   - AI
   - Net
   - Ground
+  - ServeBox
   layers:
   - Default
   - TransparentFX
