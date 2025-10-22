@@ -12,10 +12,12 @@ public class ServeStartState : PickleState
     public override void UpdateState(PickleGameManager manager)
     {
         manager.player.ServeFirst();
-        //if (manager.player.HasServed)
-        //{
-        //    manager.ChangeState(manager.serveInPlayState);
-        //}
+        manager.playerController.moveInput.y = 0; 
+
+        if (manager.player.HasServed)
+        {
+            manager.ChangeState(manager.serveInPlayState);
+        }
 
         //// Wait for player to press serve key/button
         //if (Input.GetKeyDown(KeyCode.Space)) // Example serve input

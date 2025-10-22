@@ -34,7 +34,7 @@ public class BallController : MonoBehaviour
             inServeBox = true;
             Debug.Log("Serve landed inside the serve box!");
         }
-        else if (other.CompareTag("OutZone"))
+        else if (other.CompareTag("Out"))
         {
             serveLanded = true;
             inServeBox = false;

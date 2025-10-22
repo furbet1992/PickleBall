@@ -6,7 +6,8 @@ public class AI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     float speed = 30;
     Animator animator;
-    public Transform ball; 
+    public Transform ball;
+    //public string balls = "Ball"; 
     //public Transform hitTarget;
 
     Vector3 targetPosition;
@@ -17,18 +18,21 @@ public class AI : MonoBehaviour
 
     void Start()
     {
-         targetPosition = transform.position;
+        targetPosition = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         Move();    
     }
 
     void Move()
     {
-        targetPosition.x = ball.position.x;
+        GameObject ballInstance = GameObject.FindGameObjectWithTag("Ball");
+        targetPosition.x = ballInstance.transform.position.x;        //ball.position.x;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 

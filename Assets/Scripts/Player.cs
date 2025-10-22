@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
 
     Animator animator;
     public Transform ball;
+    public GameObject ballObject;
 
     ShotManagement sM;
     Shot currentShot;
@@ -21,9 +23,13 @@ public class Player : MonoBehaviour
     [SerializeField] Transform serveRight;
     [SerializeField] Transform serveLeft;
 
+    AI ai; 
+
     bool servedRight = true;
 
     Vector2 moveDirection;
+
+
 
     public BallController b;
     public bool HasServed { get; private set; }
@@ -36,101 +42,76 @@ public class Player : MonoBehaviour
         currentShot = sM.topspin;
         aimTargetInitialPosition = aimTarget.position;
         //b =  GetComponent<BallController>();
-
+        Debug.Log($"Scene Start - HitForce: {sM.UnderArmServe.hitForce}, UpForce: {sM.UnderArmServe.upForce}");
 
     }
+    public void ServeFirst()
+        {
+        //Activate this Button, Start Charging for Power
+       
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //hitting = true;
+            HasServed = true;
+            Vector3 dir = aimTarget.position - transform.position;
+            GameObject spawnBall = Instantiate(ballObject, transform.position + new Vector3(0.2f, 2f, 0), transform.rotation);
+            Rigidbody rb = spawnBall.GetComponent<Rigidbody>();
 
-    // Update is called once per frame
-    void Update()
+            if(rb != null)
+            {
+                currentShot = sM.UnderArmServe;
+                rb.linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+                Debug.Log(currentShot); 
+                Debug.Log($"HitForce: {currentShot.hitForce},{currentShot.upForce}, Direction: {dir}");
+                //ball.transform.position = transform.position + new Vector3(0.2f, 5f, 0);
+            }
+            else
+            {
+                Debug.LogError("Spawned ball has no Rigid"); 
+            }
+
+        }
+    }
+    
+    public void TopspinStroke()
+    {
+        if(b.canApplyForce == true)
+        {
+            Vector3 dir = aimTarget.position - transform.position;
+            b.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+            //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
+            Debug.Log("Topspin!");
+        }
+        else 
+        {
+        Debug.Log("No Ball interaction"); 
+        }
+    }
+
+    public void FlatStroke()
     {
         if (b.canApplyForce == true)
         {
-            TopspinStroke();
+            Vector3 dir = aimTarget.position - transform.position;
+            b.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+            //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
+            Debug.Log("Topspin!");
+        }
+        else
+        {
+            Debug.Log("No Ball interaction");
         }
     }
-        //Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
-        //characterController.Move(m * speed * Time.deltaTime);
+}
 
-        //Topspin
-        //TopspinShot();
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    hitting = true;
-        //    currentShot = sM.topspin;
 
-        //}
-        //else if (Input.GetKeyUp(KeyCode.F))
-        //{
-        //    hitting = false;
-        //}
-        ////Flat
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    hitting = true;
-        //    currentShot = sM.flat;
 
-        //}
-        //else if (Input.GetKeyUp(KeyCode.E))
-        //{
-        //    hitting = false;
-        //}
-        public void ServeFirst()
-        {
-            //Activate this Button, Start Charging for Power
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                //hitting = true;
-                currentShot = sM.UnderArmServe;
-               // ball.transform.position = transform.position + new Vector3(0.2f, 2, 0);
-               // Vector3 dir = aimTarget.position - transform.position;
-
-            Debug.Log("CanServe"); 
-
-            }
-            //Provide a force with the value stored from above on Release
-            else if (Input.GetKeyUp(KeyCode.R))
-            {
-                //hitting = false;       
-                ball.GetComponent<Rigidbody>().linearVelocity = transform.forward + new Vector3(0, currentShot.upForce, 0);
-            }
-            //Topspin
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                hitting = true;
-                currentShot = sM.SpinServe;
-                GetComponent<BoxCollider>().enabled = false;
-
-            }
-            else if (Input.GetKeyUp(KeyCode.Q))
-            {
-                hitting = false;
-                GetComponent<BoxCollider>().enabled = true;
-                ball.transform.position = transform.position + new Vector3(0.2f, 1, 0);
-                Vector3 dir = aimTarget.position - transform.position;
-                ball.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
-            }
-        }
-    
 
 //public void TopspinShot()
 //{
 //    hitting = true;
 //    currentShot = sM.topspin;
 //}
-
-
-            public void TopspinStroke()
-            {
-                Vector3 dir = aimTarget.position - transform.position;
-                b.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
-                //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
-                Debug.Log("Topspin!");
-
-            }
-}
-
-
-
 
 
 
@@ -166,3 +147,27 @@ public class Player : MonoBehaviour
 //        transform.position = serveRight.position;
 //    servedRight = !servedRight; 
 
+//Provide a force with the value stored from above on Release
+//else if (Input.GetKeyUp(KeyCode.R))
+//{
+//    //hitting = false;
+//    Debug.Log("CanServe"); 
+//    Vector3 dir = aimTarget.position - transform.position;
+//    ball.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+//}
+//Topspin
+//if (Input.GetKeyDown(KeyCode.Q))
+//{
+//    hitting = true;
+//    currentShot = sM.SpinServe;
+//    GetComponent<BoxCollider>().enabled = false;
+
+//}
+//else if (Input.GetKeyUp(KeyCode.Q))
+//{
+//    hitting = false;
+//    GetComponent<BoxCollider>().enabled = true;
+//    ball.transform.position = transform.position + new Vector3(0.2f, 1, 0);
+//    Vector3 dir = aimTarget.position - transform.position;
+//    ball.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+//}

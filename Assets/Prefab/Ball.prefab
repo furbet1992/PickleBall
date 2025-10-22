@@ -266,7 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
   hitter: 
-  board: {fileID: 0}
+  board: {fileID: 1802360044123094752, guid: 4adac17f89413654097f896361274712, type: 3}
+  doubleBounceTimeThreshold: 0.5
+  bounceCount: 0
 --- !u!114 &9164673403795115795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
   shotManagement: {fileID: 295750155133372320}
-  aimTarget: {fileID: 0}
+  canApplyForce: 0
+  aimTarget: {fileID: 4541096695227154004, guid: f110ba9e8be787742a05a2b8ad11c734, type: 3}
 --- !u!114 &295750155133372320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7081502302652495372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 788787feef013bb4a8b2b1bdbb7ca75b, type: 3}
   m_Name: 
@@ -300,8 +303,8 @@ MonoBehaviour:
     upForce: 5
     hitForce: 20
   UnderArmServe:
-    upForce: 0
-    hitForce: 0
+    upForce: 0.5
+    hitForce: 2
   SpinServe:
-    upForce: 0
-    hitForce: 0
+    upForce: 10
+    hitForce: 10

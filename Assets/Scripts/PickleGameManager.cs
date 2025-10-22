@@ -4,6 +4,7 @@ public class PickleGameManager : MonoBehaviour
 {
     public PickleState currentState;
     public Player player;
+    public PlayerController playerController;
 
     // Each state as separate class instances
     public ServeStartState serveStartState = new ServeStartState();

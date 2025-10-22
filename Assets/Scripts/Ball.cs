@@ -27,13 +27,13 @@ public class Ball : MonoBehaviour
         {
             if (hitter == "Player")
             {
-                Debug.Log("player hit it- 2nd bounce");
+               // Debug.Log("player hit it- 2nd bounce");
                 board.PlayerWinScoring();
             }
             else if (hitter == "AI")
             {
                 board.AIWinScoring();
-                Debug.Log("AI hit it - 2nd bounce");
+               // Debug.Log("AI hit it - 2nd bounce");
             }
         }
     }
@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
             if (Time.time - lastBounceTime < doubleBounceTimeThreshold)
             {
                 bounceCount++;
-                Debug.Log($"Double bounce detected! Total bounces in quick succession: {bounceCount}");
+               // Debug.Log($"Double bounce detected! Total bounces in quick succession: {bounceCount}");
                 // You can add specific logic here for a double bounce,
                 // e.g., increasing a score, playing a sound, etc.
             }
@@ -65,20 +65,36 @@ public class Ball : MonoBehaviour
 
           // GameObject.Find("Player").GetComponent<Player>().Reset(); 
         }
+
+        if (collision.gameObject.tag == "Net")
+        {
+            if (hitter == "Player")
+            {
+                Debug.Log("player hit net");
+                board.PlayerWinScoring();
+            }
+            else if (hitter == "AI")
+            {
+                Debug.Log("AI hit net");
+                board.AIWinScoring();
+                // Debug.Log("AI hit it");
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Out") || other.CompareTag("Net"))
+        if (other.CompareTag("Out"))
         {
             if(hitter == "Player")
             {
-              Debug.Log("player hit it");
+               //Debug.Log("player hit it");
                 board.PlayerWinScoring(); 
             } else if(hitter == "AI")
             {
                 board.AIWinScoring();
-                Debug.Log("AI hit it");
+               // Debug.Log("AI hit it");
             }
         }
     }

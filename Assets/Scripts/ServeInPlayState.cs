@@ -19,6 +19,7 @@ public class ServeInPlayState : PickleState
             if (BallController.inServeBox)
             {
                 manager.ChangeState(manager.rallyState);
+                Debug.Log("Proceed to Rally");
             }
             else
             {
