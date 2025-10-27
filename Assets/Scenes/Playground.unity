@@ -3707,15 +3707,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 672637899813682868, guid: c3ea856e28ed70947bf5f8871e8921ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.46
+      value: -1.73
       objectReference: {fileID: 0}
     - target: {fileID: 672637899813682868, guid: c3ea856e28ed70947bf5f8871e8921ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 672637899813682868, guid: c3ea856e28ed70947bf5f8871e8921ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.5
+      value: -15.34
       objectReference: {fileID: 0}
     - target: {fileID: 672637899813682868, guid: c3ea856e28ed70947bf5f8871e8921ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6974,7 +6974,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickleGameManager
   player: {fileID: 1867823312}
-  playerController: {fileID: 698173937075714777}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!4 &1907541895
 Transform:
   m_ObjectHideFlags: 0
@@ -7413,15 +7415,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2380312193658760992, guid: 71baf49726f901c4d99ee736977824cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.46
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 2380312193658760992, guid: 71baf49726f901c4d99ee736977824cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 2380312193658760992, guid: 71baf49726f901c4d99ee736977824cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.5
+      value: -15.34
       objectReference: {fileID: 0}
     - target: {fileID: 2380312193658760992, guid: 71baf49726f901c4d99ee736977824cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7785,17 +7787,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &698173937075714777 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4378580697080657075, guid: 25a2cec41cc3eed499746c4b98bd6839, type: 3}
-  m_PrefabInstance: {fileID: 3851631627101441642}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8568147419137968860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc1406258777fd49993d7a711b243e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &3851631627101441642
 PrefabInstance:
   m_ObjectHideFlags: 0

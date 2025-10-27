@@ -23,19 +23,19 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (bounceCount >= 2)
-        {
-            if (hitter == "Player")
-            {
-               // Debug.Log("player hit it- 2nd bounce");
-                board.PlayerWinScoring();
-            }
-            else if (hitter == "AI")
-            {
-                board.AIWinScoring();
-               // Debug.Log("AI hit it - 2nd bounce");
-            }
-        }
+        //if (bounceCount >= 2)
+        //{
+        //    if (hitter == "Player")
+        //    {
+        //       // Debug.Log("player hit it- 2nd bounce");
+        //        board.PlayerWinScoring();
+        //    }
+        //    else if (hitter == "AI")
+        //    {
+        //        board.AIWinScoring();
+        //       // Debug.Log("AI hit it - 2nd bounce");
+        //    }
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -66,36 +66,36 @@ public class Ball : MonoBehaviour
           // GameObject.Find("Player").GetComponent<Player>().Reset(); 
         }
 
-        if (collision.gameObject.tag == "Net")
-        {
-            if (hitter == "Player")
-            {
-                Debug.Log("player hit net");
-                board.PlayerWinScoring();
-            }
-            else if (hitter == "AI")
-            {
-                Debug.Log("AI hit net");
-                board.AIWinScoring();
-                // Debug.Log("AI hit it");
-            }
-        }
+    //    if (collision.gameObject.tag == "Net")
+    //    {
+    //        if (hitter == "Player")
+    //        {
+    //            Debug.Log("player hit net");
+    //            board.PlayerWinScoring();
+    //        }
+    //        else if (hitter == "AI")
+    //        {
+    //            Debug.Log("AI hit net");
+    //            board.AIWinScoring();
+    //            // Debug.Log("AI hit it");
+    //        }
+    //    }
 
-    }
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Out"))
-        {
-            if(hitter == "Player")
-            {
-               //Debug.Log("player hit it");
-                board.PlayerWinScoring(); 
-            } else if(hitter == "AI")
-            {
-                board.AIWinScoring();
-               // Debug.Log("AI hit it");
-            }
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Out"))
+    //    {
+    //        if(hitter == "Player")
+    //        {
+    //           //Debug.Log("player hit it");
+    //            board.PlayerWinScoring(); 
+    //        } else if(hitter == "AI")
+    //        {
+    //            board.AIWinScoring();
+    //           // Debug.Log("AI hit it");
+    //        }
+    //    }
     }
 }

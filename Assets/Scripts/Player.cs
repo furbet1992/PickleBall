@@ -29,14 +29,23 @@ public class Player : MonoBehaviour
 
     Vector2 moveDirection;
 
-
-
     public BallController b;
+
+    //Serving
+    public bool CanServe { get; set; } = false;
     public bool HasServed { get; private set; }
+    public bool MovementLocked { get; set; } = false;
+
+    public Transform rightServePos;
+    private Transform leftServePos;
+    private Rigidbody rb;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         sM = GetComponent<ShotManagement>();
         currentShot = sM.topspin;
@@ -72,7 +81,35 @@ public class Player : MonoBehaviour
 
         }
     }
-    
+
+    public void MoveToRightServePosition()
+    {
+        if (rightServePos != null)
+        {
+            transform.position = rightServePos.position;
+            transform.rotation = rightServePos.rotation;
+            Debug.Log($"{name} moved to right serve position");
+        }
+        else
+        {
+            Debug.LogWarning($"{name} has no rightServePos assigned!");
+        }
+    }
+
+    public void MoveToLeftServePosition()
+    {
+        if (leftServePos != null)
+        {
+            transform.position = leftServePos.position;
+            transform.rotation = leftServePos.rotation;
+           // Debug.Log($"{name} moved to left serve position");
+        }
+        else
+        {
+            //Debug.LogWarning($"{name} has no leftServePos assigned!");
+        }
+    }
+
     public void TopspinStroke()
     {
         if(b.canApplyForce == true)
@@ -103,6 +140,24 @@ public class Player : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

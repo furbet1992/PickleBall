@@ -14,6 +14,9 @@ public class BallController : MonoBehaviour
     [SerializeField] private Transform aimTarget;
 
 
+    public static bool serverWon; 
+    public static bool pointOver; 
+
     public static bool serveLanded = false;
     public static bool inServeBox = false;
     public static bool pointEnded = false;
@@ -55,26 +58,4 @@ public class BallController : MonoBehaviour
             canApplyForce = false;
         }
     }
-
-    //public void AddForceToBall()
-    //{
-    //    if (canApplyForce)
-    //    {
-    //        Vector3 dir = aimTarget.position - transform.position; 
-    //        rb.linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
-    //        //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
-    //        Debug.Log("Topspin!");
-    //    }
-    //}
-    //public void FlatStroke()
-    //{
-    //    if (canApplyForce)
-    //    {
-    //        currentShot = shotManagement.flat;
-    //        Vector3 dir = aimTarget.position - transform.position;
-    //        rb.linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
-    //        //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
-    //        Debug.Log("Flat!");
-    //    }
-    //}
 }

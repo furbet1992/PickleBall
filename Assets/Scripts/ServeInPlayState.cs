@@ -18,6 +18,7 @@ public class ServeInPlayState : PickleState
             serveResultChecked = true;
             if (BallController.inServeBox)
             {
+                //manager.player1
                 manager.ChangeState(manager.rallyState);
                 Debug.Log("Proceed to Rally");
             }

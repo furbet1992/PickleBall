@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem; 
@@ -26,14 +27,25 @@ public class PlayerController : MonoBehaviour
     private float currentCharge = 0f;
     private bool isCharging = false;
 
+    private Rigidbody rb;
+
+    //Serving
+    public bool MovementLocked { get; private set; } = false;
+    public bool serveMovedDisabled = true;
+    public bool canMoveForward = false; 
     void Awake()
     {
-        player.GetComponent<Player>(); 
         characterController = GetComponent<CharacterController>();
         //currentShot = shotManagement.topspin;
-        if (instance == null) instance = this; 
+        if (instance == null) instance = this;
+        rb = GetComponent<Rigidbody>();
     }
-    
+    public void LockMovement(bool lockMovement)
+    {
+        MovementLocked = lockMovement;
+    }
+
+
     void Update()
     {
         Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
@@ -51,14 +63,26 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-       // Debug.Log($"Move Input: {moveInput}"); 
+
+        //if (player.MovementLocked)
+        //{
+        //    // Disable forward/backward movement during serve
+        //    moveInput.y = 0;
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 movement = MovementLocked
+            ? new Vector3(moveInput.x, 0f, 0f) * speed
+            : new Vector3(moveInput.x, 0f, moveInput.y) * speed;
+
+        rb.linearVelocity = movement;
     }
 
 
     public void Shoot(InputAction.CallbackContext context)
     {
-
-
         if (context.performed)
         {
             Debug.Log($"Stroke");
