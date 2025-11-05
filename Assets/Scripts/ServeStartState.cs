@@ -17,7 +17,7 @@ public class ServeStartState : PickleState
     }
     public override void EnterState(PickleGameManager manager)
     {
-        player.MovementLocked = true;
+        //player.MovementLocked = true;
         if (gameManager.scoreManager.serveOnRightSide)
             player.MoveToRightServePosition();
         else
@@ -52,7 +52,7 @@ public class ServeStartState : PickleState
 
     public override void ExitState(PickleGameManager manager)
     {
-        player.MovementLocked = false;
+       //player.MovementLocked = false;
         player.CanServe = false;
         // Hide serve UI or disable serve controls
     }

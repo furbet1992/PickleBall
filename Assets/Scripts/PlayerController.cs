@@ -32,7 +32,12 @@ public class PlayerController : MonoBehaviour
     //Serving
     public bool MovementLocked { get; private set; } = false;
     public bool serveMovedDisabled = true;
-    public bool canMoveForward = false; 
+    public bool canMoveForward = false;
+
+    //Anim
+    [SerializeField] private Animator anim; 
+
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -50,25 +55,17 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
         characterController.Move(m * speed * Time.deltaTime);
-
-        if (isCharging)
-        {
-            currentCharge += chargeRate * Time.deltaTime;
-            currentCharge = Mathf.Clamp(currentCharge, 0f, maxCharge);
-
-            Debug.Log($"Charging... {currentCharge:F1}");
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
 
-        //if (player.MovementLocked)
-        //{
-        //    // Disable forward/backward movement during serve
-        //    moveInput.y = 0;
-        //}
+        anim.SetFloat("MoveX", moveInput.x);
+        anim.SetFloat("MoveY", moveInput.y);
+
+        // Optional: set a speed parameter based on magnitude
+        anim.SetFloat("Speed", moveInput.magnitude);
     }
 
     private void FixedUpdate()
@@ -85,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log($"Stroke");
+            //Debug.Log($"Stroke");
             player.TopspinStroke(); 
             //BallController.Instance?.AddForceToBall(); 
         }

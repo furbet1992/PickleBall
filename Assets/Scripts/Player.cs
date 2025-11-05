@@ -20,9 +20,6 @@ public class Player : MonoBehaviour
 
     Vector3 aimTargetInitialPosition;
 
-    [SerializeField] Transform serveRight;
-    [SerializeField] Transform serveLeft;
-
     AI ai; 
 
     bool servedRight = true;
@@ -31,10 +28,12 @@ public class Player : MonoBehaviour
 
     public BallController b;
 
+    public ChargeBar chargeBar; 
+
     //Serving
     public bool CanServe { get; set; } = false;
     public bool HasServed { get; private set; }
-    public bool MovementLocked { get; set; } = false;
+    //public bool MovementLocked { get; set; } = false;
 
     public Transform rightServePos;
     private Transform leftServePos;
@@ -48,6 +47,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         sM = GetComponent<ShotManagement>();
+        chargeBar.GetComponent<ChargeBar>(); 
         currentShot = sM.topspin;
         aimTargetInitialPosition = aimTarget.position;
         //b =  GetComponent<BallController>();
@@ -78,7 +78,6 @@ public class Player : MonoBehaviour
             {
                 Debug.LogError("Spawned ball has no Rigid"); 
             }
-
         }
     }
 
@@ -110,18 +109,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Need to get the power 
+
     public void TopspinStroke()
     {
         if(b.canApplyForce == true)
         {
             Vector3 dir = aimTarget.position - transform.position;
             b.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+            chargeBar.StartCharging(); 
             //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
             Debug.Log("Topspin!");
         }
         else 
         {
-        Debug.Log("No Ball interaction"); 
+            Debug.Log(
+                "No Ball interaction"); 
         }
     }
 
@@ -140,26 +143,6 @@ public class Player : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //public void TopspinShot()

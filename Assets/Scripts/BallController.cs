@@ -9,7 +9,6 @@ public class BallController : MonoBehaviour
     public ShotManagement shotManagement; 
     public bool canApplyForce = false;
     
-
    // [SerializeField] private float forceStrength = 10f;
     [SerializeField] private Transform aimTarget;
 
