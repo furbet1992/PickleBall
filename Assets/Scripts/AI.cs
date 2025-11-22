@@ -11,10 +11,12 @@ public class AI : MonoBehaviour
     //public Transform hitTarget;
 
     Vector3 targetPosition;
-    [SerializeField] float force = 20f;
+    [SerializeField] float force = 11f;
+    [SerializeField] float upForce = 8f;
     public Transform[] targets; 
 
     ShotManagement shotManagement;
+    Shot shots;
 
     void Start()
     {
@@ -48,7 +50,7 @@ public class AI : MonoBehaviour
         if (other.CompareTag("Ball"))
         {
             Vector3 dir = PickTarget() - transform.position;
-            other.GetComponent<Rigidbody>().linearVelocity = dir.normalized * force + new Vector3(0, 5, 0);
+            other.GetComponent<Rigidbody>().linearVelocity = dir.normalized * force + new Vector3(0, upForce, 0);
             ball.GetComponent<Ball>().hitter = "AI";
 
             //Vector3 ballDir = ball.position - transform.position;
