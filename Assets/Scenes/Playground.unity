@@ -9749,7 +9749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickleGameManager
   player: {fileID: 3561538104052438475}
   player1: {fileID: 2077953987}
-  player2: {fileID: 2077953987}
   scoreManager: {fileID: 1299487643}
 --- !u!4 &1907541895
 Transform:

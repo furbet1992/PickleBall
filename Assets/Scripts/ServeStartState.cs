@@ -18,13 +18,13 @@ public class ServeStartState : PickleState
     public override void EnterState(PickleGameManager manager)
     {
         //player.MovementLocked = true;
-        if (gameManager.scoreManager.serveOnRightSide)
-            player.MoveToRightServePosition();
-        else
-            player.MoveToLeftServePosition();
+        //if (gameManager.scoreManager.serveOnRightSide)
+        //    player.MoveToRightServePosition();
+        //else
+        //    player.MoveToLeftServePosition();
 
-        player.CanServe = true;
-        Debug.Log("Player ready to serve.");
+        //player.CanServe = true;
+        //Debug.Log("Player ready to serve.");
     }
 
     public override void UpdateState(PickleGameManager manager)
@@ -37,10 +37,10 @@ public class ServeStartState : PickleState
             manager.ChangeState(manager.serveInPlayState);
         }
 
-        if (manager.scoreManager.serveOnRightSide)
-            manager.player.MoveToRightServePosition();
-        else
-            manager.player.MoveToLeftServePosition();
+        //if (manager.scoreManager.serveOnRightSide)
+        //    manager.player.MoveToRightServePosition();
+        //else
+        //    manager.player.MoveToLeftServePosition();
         //// Wait for player to press serve key/button
         //if (Input.GetKeyDown(KeyCode.Space)) // Example serve input
         //{
@@ -53,7 +53,7 @@ public class ServeStartState : PickleState
     public override void ExitState(PickleGameManager manager)
     {
        //player.MovementLocked = false;
-        player.CanServe = false;
+        //player.CanServe = false;
         // Hide serve UI or disable serve controls
     }
 }
