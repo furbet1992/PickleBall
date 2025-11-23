@@ -33,7 +33,7 @@ public class ServeStartState : PickleState
 
         if (manager.player.HasServed)
         {
-            manager.player1.serveMovedDisabled = false;
+            manager.controller.serveMovedDisabled = false;
             manager.ChangeState(manager.serveInPlayState);
         }
 

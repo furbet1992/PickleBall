@@ -9748,7 +9748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickleGameManager
   player: {fileID: 3561538104052438475}
-  player1: {fileID: 2077953987}
+  controller: {fileID: 9144055197043900461}
   scoreManager: {fileID: 1299487643}
 --- !u!4 &1907541895
 Transform:
@@ -10794,17 +10794,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2077953987 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6768154186541556516, guid: 82351519221cff14d99e0351b98ee1ab, type: 3}
-  m_PrefabInstance: {fileID: 347438632}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077953978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc1406258777fd49993d7a711b243e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &2099078354
 GameObject:
   m_ObjectHideFlags: 0
@@ -11202,6 +11191,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &9144055197043900461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768154186541556516, guid: 82351519221cff14d99e0351b98ee1ab, type: 3}
+  m_PrefabInstance: {fileID: 8026438502001168879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568147419137968860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc1406258777fd49993d7a711b243e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

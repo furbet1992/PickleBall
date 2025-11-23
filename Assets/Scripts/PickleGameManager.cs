@@ -4,7 +4,7 @@ public class PickleGameManager : MonoBehaviour
 {
     public PickleState currentState;
     public Player player;
-    public PlayerController player1;
+    public PlayerController controller;
    // public PlayerController player2;
 
     public ScoreBoard scoreManager; 
