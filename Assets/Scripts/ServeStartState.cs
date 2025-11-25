@@ -15,6 +15,12 @@ public class ServeStartState : PickleState
         gameManager = gm;
         player = p;
     }
+
+    public override void Shoot(PickleGameManager manager, ShootType shootType)
+    {
+        manager.player.ServeFirst();
+    }
+
     public override void EnterState(PickleGameManager manager)
     {
         //player.MovementLocked = true;
@@ -29,7 +35,7 @@ public class ServeStartState : PickleState
 
     public override void UpdateState(PickleGameManager manager)
     {
-        manager.player.ServeFirst();
+        //manager.player.ServeFirst();
 
         if (manager.player.HasServed)
         {

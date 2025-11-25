@@ -5,9 +5,9 @@ public class PickleGameManager : MonoBehaviour
     public PickleState currentState;
     public Player player;
     public PlayerController controller;
-   // public PlayerController player2;
+    // public PlayerController player2;
 
-    public ScoreBoard scoreManager; 
+    public ScoreBoard scoreManager;
 
     // Each state as separate class instances
     public ServeStartState serveStartState = new ServeStartState();
@@ -21,6 +21,11 @@ public class PickleGameManager : MonoBehaviour
     {
         scoreManager = GetComponent<ScoreBoard>();
         ChangeState(serveStartState);
+    }
+
+    public void Shoot(ShootType shootType)
+    {
+        currentState?.Shoot(this, shootType);
     }
 
     void Update()

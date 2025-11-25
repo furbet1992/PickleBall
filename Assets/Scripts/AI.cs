@@ -33,8 +33,11 @@ public class AI : MonoBehaviour
     void Move()
     {
         GameObject ballInstance = GameObject.FindGameObjectWithTag("Ball");
-        targetPosition.x = ballInstance.transform.position.x;        //ball.position.x;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (ballInstance)
+        {
+            targetPosition.x = ballInstance.transform.position.x;        //ball.position.x;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
     }
 
     Vector3 PickTarget()

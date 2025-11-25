@@ -1,9 +1,14 @@
 using UnityEngine;
 
-    public class PointEndState : PickleState
+public class PointEndState : PickleState
+{
+    public override void Shoot(PickleGameManager manager, ShootType shootType)
     {
-        public override void EnterState(PickleGameManager manager)
-        {
+        UnityEngine.Debug.Log("PointEnd shoot");
+    }
+
+    public override void EnterState(PickleGameManager manager)
+    {
         var scoreManager = manager.scoreManager;
 
         // Example: determine winner
@@ -29,12 +34,12 @@ using UnityEngine;
         Debug.Log(scoreManager.GetScoreText());
     }
 
-        public override void UpdateState(PickleGameManager manager)
-        {
-            // Wait a short delay before updating score
-            manager.ChangeState(manager.scoreUpdateState);
-        }
-
-        public override void ExitState(PickleGameManager manager) { }
+    public override void UpdateState(PickleGameManager manager)
+    {
+        // Wait a short delay before updating score
+        manager.ChangeState(manager.scoreUpdateState);
     }
+
+    public override void ExitState(PickleGameManager manager) { }
+}
 

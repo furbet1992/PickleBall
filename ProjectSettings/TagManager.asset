@@ -11,6 +11,7 @@ TagManager:
   - Net
   - Ground
   - ServeBox
+  - GameManager
   layers:
   - Default
   - TransparentFX

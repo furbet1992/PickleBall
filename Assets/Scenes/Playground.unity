@@ -2408,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081502302652495372, guid: 3ecde182e82dfff45bd3339c90d1c88f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8253858451130887554, guid: 3ecde182e82dfff45bd3339c90d1c88f, type: 3}
       propertyPath: m_Material
@@ -9730,7 +9730,7 @@ GameObject:
   - component: {fileID: 1907541894}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11151,6 +11151,14 @@ PrefabInstance:
       propertyPath: rightServePos
       value: 
       objectReference: {fileID: 553282907}
+    - target: {fileID: 8529293079100352833, guid: 82351519221cff14d99e0351b98ee1ab, type: 3}
+      propertyPath: ballController
+      value: 
+      objectReference: {fileID: 1467534828}
+    - target: {fileID: 8529293079100352833, guid: 82351519221cff14d99e0351b98ee1ab, type: 3}
+      propertyPath: gameManagerTag
+      value: GameManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

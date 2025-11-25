@@ -3,6 +3,11 @@ public class ServeInPlayState : PickleState
 {
     private bool serveResultChecked = false;
 
+    public override void Shoot(PickleGameManager manager, ShootType shootType)
+    {
+        UnityEngine.Debug.Log("Serve in play shoot");
+    }
+
     public override void EnterState(PickleGameManager manager)
     {
         serveResultChecked = false;

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class RallyState : PickleState
 {
+    public override void Shoot(PickleGameManager manager, ShootType shootType)
+    {
+        manager.player.TopspinStroke();
+    }
+
     public override void EnterState(PickleGameManager manager)
     {
         Debug.Log("Rally started — play anywhere!");

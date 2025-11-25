@@ -2,7 +2,16 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
+
+public enum ShootType
+{
+    ServeTopSpin,
+    ServeSlice,
+    TopSpin,
+    Flat,
+    Slice
+};
 
 public class PlayerController : MonoBehaviour
 {
@@ -83,7 +92,9 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             //Debug.Log($"Stroke");
-            player.TopspinStroke(); 
+            //player.TopspinStroke();
+            ShootType shootType = ShootType.TopSpin;
+            player.Shoot(shootType);
             //BallController.Instance?.AddForceToBall(); 
         }
     }

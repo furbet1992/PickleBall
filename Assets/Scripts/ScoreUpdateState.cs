@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class ScoreUpdateState : PickleState
 {
+    public override void Shoot(PickleGameManager manager, ShootType shootType)
+    {
+        UnityEngine.Debug.Log("ScoreUpdate shoot");
+    }
+
     public override void EnterState(PickleGameManager manager)
     {
         Debug.Log("Updating score...");
