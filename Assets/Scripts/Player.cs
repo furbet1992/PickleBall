@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -136,7 +134,8 @@ public class Player : MonoBehaviour
         if (ballController.canApplyForce == true)
         {
             Vector3 dir = aimTarget.position - transform.position;
-            ballController.GetComponent<Rigidbody>().linearVelocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+            ballController.GetComponent<Rigidbody>().linearVelocity = dir.normalized * 15.0f + new Vector3(0, 10, 0); 
+                //currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
             chargeBar.StartCharging();
             //rb.AddForce(Vector3.up * forceStrength, ForceMode.Impulse);
             Debug.Log("Topspin!");
