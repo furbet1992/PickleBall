@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     private PickleGameManager pickleGameManager;
     public string gameManagerTag;
 
+    public PlayerController PC; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -133,6 +135,8 @@ public class Player : MonoBehaviour
     {
         if (ballController.canApplyForce == true)
         {
+            PC.currentState = PlayerState.Aiming;
+
             Vector3 dir = aimTarget.position - transform.position;
             ballController.GetComponent<Rigidbody>().linearVelocity = dir.normalized * 15.0f + new Vector3(0, 10, 0); 
                 //currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);

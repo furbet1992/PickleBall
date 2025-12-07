@@ -13,6 +13,12 @@ public enum ShootType
     Slice
 };
 
+public enum PlayerState
+{
+    Movement,
+    Aiming
+}
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
@@ -44,7 +50,11 @@ public class PlayerController : MonoBehaviour
     public bool canMoveForward = false;
 
     //Anim
-    [SerializeField] private Animator anim; 
+    [SerializeField] private Animator anim;
+
+    //Player Movement Switch
+    public PlayerState currentState = PlayerState.Movement;
+    public Vector3 AimDirection { get; private set; }
 
 
     void Awake()
@@ -62,28 +72,42 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
-        characterController.Move(m * speed * Time.deltaTime);
+        if (currentState == PlayerState.Movement)
+        {
+            Vector3 m = new Vector3(moveInput.x, 0, moveInput.y);
+            characterController.Move(m * speed * Time.deltaTime);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
 
-        anim.SetFloat("MoveX", moveInput.x);
-        anim.SetFloat("MoveY", moveInput.y);
-
-        // Optional: set a speed parameter based on magnitude
-        anim.SetFloat("Speed", moveInput.magnitude);
+        if (currentState == PlayerState.Movement)
+        {
+            anim.SetFloat("MoveX", moveInput.x);
+            anim.SetFloat("MoveY", moveInput.y);
+            anim.SetFloat("Speed", moveInput.magnitude);
+        }
+        else
+        {
+            AimDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        }
     }
 
     private void FixedUpdate()
     {
-        Vector3 movement = MovementLocked
+        if (currentState == PlayerState.Movement)
+        {
+            Vector3 movement = MovementLocked
             ? new Vector3(moveInput.x, 0f, 0f) * speed
             : new Vector3(moveInput.x, 0f, moveInput.y) * speed;
-
         rb.linearVelocity = movement;
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
     }
 
 
